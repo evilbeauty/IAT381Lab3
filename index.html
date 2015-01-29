@@ -11,19 +11,49 @@
 
       var HelloWorld = React.createClass({
   render: function() {
+
+var elapsed = Math.round(this.props.elapsed  / 100);
+          var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+
+
+          var name = 'Your name here';
+
+
+
+
     return (
+
+
+
+      <div>
+
+
       <p>
         Hello, <input type="text" placeholder="Your name here" />!
+        </p>
+        <p>
         It is {this.props.date.toTimeString()}
       </p>
+      <p>
+      And your name is {name}
+      </p>
+<p>
+          This app has been running for {seconds} seconds!
+        </p>
+      </div>
+
     );
   }
 });
 
+      var start = new Date().getTime();
+
+
 setInterval(function() {
   React.render(
-    <HelloWorld date={new Date()} />,
+  <HelloWorld date={new Date()} elapsed={new Date().getTime() - start} />,
     document.getElementById('example')
+
   );
 }, 500);
 
